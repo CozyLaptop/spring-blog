@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dice Roll!</title>
+</head>
+<body>
+<h1>Guess the dice roll: </h1>
+<form action="/roll-dice" method="post">
+    <input name="userGuess" type="number" min="1" max="6" step="1">
+    <button>Submit</button>
+</form>
+<div th:text="${diceRoll}"></div>
+<div th:text="${userGuess}"></div>
+<div th:text="${answer}"></div>
+</body>
+</html>
