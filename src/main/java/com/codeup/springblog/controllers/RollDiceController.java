@@ -1,8 +1,8 @@
 package com.codeup.springblog.controllers;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -14,7 +14,7 @@ public class RollDiceController {
     }
 
     @PostMapping("/roll-dice")
-    public String postDiceRoll(@RequestParam(name = "userGuess")String userGuess, Model model) {
+    public String postDiceRoll(@RequestParam("userGuess")String userGuess, Model model) {
         int diceRoll = (int) (Math.random() * 5 + 1);
         System.out.println(diceRoll);
         model.addAttribute("userGuess", "Your guess is " + userGuess);

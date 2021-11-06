@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Edit Post</h1>
+<form th:method="POST">
+    <label for="title">
+        <input type="text" name="title" id="title" placeholder="Enter blog post title" th:value="${post.title}">
+    </label>
+    <br>
+    <label for="body">
+        <textarea name="body" id="body" placeholder="Enter Blog Content" th:text="${post.body}"></textarea>
+    </label>
+    <button>Edit Post</button>
+</form>
+</body>
+</html>
