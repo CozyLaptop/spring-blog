@@ -36,8 +36,10 @@ public class PostController {
     @PostMapping("/posts/create")
     @ResponseBody
     public String createPost(@ModelAttribute Post newPost){
+        newPost.setUser(userDao.getById(1L));
         postDao.save(newPost);
-        return "Ad created with an ID of: " + newPost.getId();
+        return "Ad created with an ID of: " + newPost.getId() +
+                "and with the user id of" + newPost.getUser();
     }
     @GetMapping("/posts/{id}/edit")
     public String returnEditView(@PathVariable long id, Model model){
