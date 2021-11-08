@@ -39,7 +39,7 @@ public class PostController {
         newPost.setUser(userDao.getById(1L));
         postDao.save(newPost);
         return "Ad created with an ID of: " + newPost.getId() +
-                "and with the user id of" + newPost.getUser();
+                " and with the user id of " + newPost.getUser().getId();
     }
     @GetMapping("/posts/{id}/edit")
     public String returnEditView(@PathVariable long id, Model model){
