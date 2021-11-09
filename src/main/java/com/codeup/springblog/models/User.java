@@ -10,13 +10,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(columnDefinition = "VARCHAR(200) NOT NULL")
+    @Column(columnDefinition = "VARCHAR(100) NOT NULL")
     private String username;
 
-    @Column(columnDefinition = "TEXT NOT NULL")
+    @Column(columnDefinition = "VARCHAR(100) NOT NULL")
     private String email;
 
-    @Column(columnDefinition = "TEXT NOT NULL")
+    @Column(columnDefinition = "VARCHAR(100) NOT NULL")
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")

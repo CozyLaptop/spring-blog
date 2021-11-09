@@ -19,11 +19,13 @@ public class PostController {
     @GetMapping("/posts")
     public String getAds(Model model){
         model.addAttribute("posts", postDao.findAll());
+        model.addAttribute("user", userDao.getById(1L));
         return "posts/index";
     }
     @GetMapping("/posts/{id}")
     public String getAd(@PathVariable long id, Model model){
         model.addAttribute("post", postDao.getById(id));
+        model.addAttribute("user", userDao.getById(1L));
         return "posts/show";
     }
 
