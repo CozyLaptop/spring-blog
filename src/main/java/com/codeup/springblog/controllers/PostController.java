@@ -36,12 +36,12 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    @ResponseBody
     public String createPost(@ModelAttribute Post newPost){
         newPost.setUser(userDao.getById(1L));
         postDao.save(newPost);
-        return "Ad created with an ID of: " + newPost.getId() +
-                " and with the user id of " + newPost.getUser().getId();
+//        return "Ad created with an ID of: " + newPost.getId() +
+//                " and with the user id of " + newPost.getUser().getId();
+        return "redirect:/posts";
     }
     @GetMapping("/posts/{id}/edit")
     public String returnEditView(@PathVariable long id, Model model){
@@ -49,11 +49,8 @@ public class PostController {
         return "posts/edit";
     }
     @PostMapping("/posts/{id}/edit")
-    public String updatePost(@PathVariable long id, @RequestParam String title, @RequestParam String body){
-        Post post = postDao.getById(id);
-        post.setTitle(title);
-        post.setBody(body);
-        postDao.save(post);
+    public String updatePost(@ModelAttribute Post edittedPost){
+        postDao.save(edittedPost);
         return "redirect:/posts";
     }
     @PostMapping("/posts/{id}/delete")
