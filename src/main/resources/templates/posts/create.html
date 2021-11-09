@@ -7,9 +7,16 @@
 <body>
 <form action="/posts/create" method="post" th:object="${post}">
     <label th:for="title">
+        Enter your title:<br>
         <input type="text" th:field="*{title}"/>
     </label>
-    <input type="text" th:field="*{body}"/>
+    <br>
+    Enter description:
+    <br>
+    <label>
+        <textarea th:field="*{body}"></textarea>
+    </label>
+    <br>
     <button type="submit">Submit</button>
 </form>
 </body>
