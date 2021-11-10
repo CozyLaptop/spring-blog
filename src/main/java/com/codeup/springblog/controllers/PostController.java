@@ -3,18 +3,25 @@ package com.codeup.springblog.controllers;
 import com.codeup.springblog.models.Post;
 import com.codeup.springblog.repositories.PostRepository;
 import com.codeup.springblog.repositories.UserRepository;
+import com.codeup.springblog.services.EmailService;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class PostController {
     private final PostRepository postDao;
     private final UserRepository userDao;
-    public PostController(PostRepository postDao, UserRepository userDao){
+    private final EmailService emailService;
+
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService){
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
     @GetMapping("/posts")
     public String getAds(Model model){
@@ -39,6 +46,7 @@ public class PostController {
     public String createPost(@ModelAttribute Post newPost){
         newPost.setUser(userDao.getById(1L));
         postDao.save(newPost);
+        emailService.prepareAndSend(newPost, "You created a post!", "Here's a test body");
 //        return "Ad created with an ID of: " + newPost.getId() +
 //                " and with the user id of " + newPost.getUser().getId();
         return "redirect:/posts";
